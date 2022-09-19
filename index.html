@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini ATM</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-5.2.0-beta1-dist/css/bootstrap.css">
+</head>
+<body>
+    <center>
+      <div class=" container col-8 rounded-lg">
+                <h1 class="text-white fw-bold ">MINI ATM</h1>
+        <table class="TB">
+            <tr class="p-5">
+                 <td>
+                    <button class="mt-4 w-100 p-3 btn btn-light fw-bold" onclick="withdrawal()">WITHDRAWAL</button>
+                </td>
+                <td rowspan="4">
+                    <div id="disp" class=" fs-2 text-white fw-bold text-center"></div>
+                    <input type="number" placeholder="INPUT AMOUNT (#)" id="userBalance" class="p-3 fs-4 text-center" >
+                </td>
+                <td >
+                    <button class="btn btn-light mt-4 p-3 w-100 fw-bold">PROFILE</button>
+                </td>
+                </tr> 
+
+
+                <tr>
+                 <td><button class="mt-4 w-100 p-3 btn btn-light fw-bold" onclick="deposit()">DEPOSIT</button></td>
+                 <td><button class="btn btn-light mt-4 p-3 w-100 fw-bold">PAY BILLS</button></td>
+                </tr> 
+
+
+                <tr>
+                 <td><button class="mt-4 w-100 p-3 btn btn-light fw-bold" onclick="trans()">TRANSFER</button></td>
+                 <td><button class="btn btn-light mt-4 p-3 w-100 fw-bold">AIRTIME</button></td>
+                </tr> 
+
+
+                <tr>
+                 <td><button class="mt-4 w-100 p-3 btn btn-light fw-bold" onclick="check()">CHECK BALANCE</button></td>
+                 <td><button class="btn btn-light mt-4 p-3 w-100 fw-bold">CHANGE PIN</button></td>
+                </tr> 
+             </table>
+        </div>
+        </center>
+    
+    <script>
+        var availableBalance = 1000
+        
+        function withdrawal(){
+            var mybalance = userBalance.value
+            if(mybalance>availableBalance){
+                disp.innerText = "INSUFFICIENT FUND"
+            }
+            else if(mybalance<0){
+                disp.innerText = "INVALID"
+            }
+            else if(mybalance==""){
+                disp.innerText = "Kindly enter an amount"
+            }
+            else{
+                availableBalance = availableBalance - mybalance
+                disp.innerText = "Withdrawal Successful and your current balance is $" + availableBalance
+            }
+        }
+        function deposit(){
+            var mybalance = Number(userBalance.value)
+                if (mybalance<0){
+                    disp.innerText = "INVALID"
+                    
+                }
+                else if(mybalance==""){
+                disp.innerText = "Kindly enter an amount"
+            }
+                else{
+                    availableBalance = availableBalance + mybalance
+                        disp.innerText = "Transaction Successful and your current balance is $" + availableBalance
+            }
+                
+        }
+        function check(){
+                  var mybalance = userBalance.value
+                 disp.innerText = "Your balance is $" + availableBalance
+                 
+        }
+        // function money(Numbers){
+        //     userBalance.value = Numbers
+        // }
+        function trans(){
+            disp.innerText = "Service currently unavailable"
+        }
+    </script>
+</body>
+</html>
